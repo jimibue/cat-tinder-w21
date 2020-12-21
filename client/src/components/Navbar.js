@@ -2,14 +2,19 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Menu } from "semantic-ui-react";
 import { AuthContext } from "../providers/AuthProvider";
+import { useHistory } from "react-router-dom";
 
 export default () => {
-  const auth = useContext(AuthContext);
-  const { user, handleLogout } = auth;
+  const { authenticated, handleLogout } = useContext(AuthContext);
+  const history = useHistory();
 
   const rightNavItem = () => {
-    if (user) {
-      return <Menu.Item name="logout" onClick={() => handleLogout()} />;
+    if (authenticated) {
+      return (
+        <>
+          <Menu.Item name="logout" onClick={() => handleLogout(history)} />
+        </>
+      );
     } else {
       return (
         <>
@@ -17,6 +22,7 @@ export default () => {
             <Menu.Item
               name="login"
               id="login"
+              // active
               // active={(location.pathname = "/login")}
             />
           </Link>

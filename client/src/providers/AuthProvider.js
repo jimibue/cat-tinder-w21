@@ -15,6 +15,7 @@ export class AuthProvider extends React.Component {
         history.push("/");
       })
       .catch((err) => {
+        //err.response.data.errors
         alert("error occured in registion throw a debugger in here");
       });
   };
@@ -37,11 +38,14 @@ export class AuthProvider extends React.Component {
         history.push("/login");
       })
       .catch((err) => {
+        console.log(err);
         alert("error occured in Signingout throw a debugger in here");
       });
   };
 
   render() {
+    console.log(this.state.user);
+    console.log(this.state.user !== null);
     return (
       <AuthContext.Provider
         value={{
@@ -50,7 +54,7 @@ export class AuthProvider extends React.Component {
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
           setUser: (user) => this.setState({ user: user }),
-          authenicated: this.state.user !== null,
+          authenticated: this.state.user !== null,
         }}
       >
         {this.props.children}
