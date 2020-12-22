@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :things
     resources :cats, only: [:index, :update]
+
+    get "my_cats", to: "cats#my_cats"
   end
 end
