@@ -6,7 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
+5.times do
+  name = Faker::Creature::Cat.name
+  breed = Faker::Creature::Cat.breed
+  registry = Faker::Creature::Cat.registry
+  avatar = Faker::Avatar.image(slug: name, size: "100x400", format: "png", set: "set4")
+  Cat.create(name: name, breed: breed, registry: registry, avatar: avatar)
+end
 
-Thing.create(name: Faker::Hacker.noun)
-Thing.create(name: Faker::Hacker.noun)
-Thing.create(name: Faker::Hacker.noun)
+puts "5 Cats Seeded"
